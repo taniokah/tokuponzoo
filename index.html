@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>動物園のHP</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+		integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+		integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+
+	<style>
+		#mapid {
+		  width: 800px;
+		  height: 600px;
+		}
+	</style>
+
+</head>
+<body>
+<h1>とくぽん動物園</h1>
+	<p>
+	ようこそ，とくぽん動物園へ！
+	</p>
+
+	<p>
+	入力してください：<input type="text" id="name" maxlength="10" size="20" onchange="change();">
+	</p>
+	<div id="mapid"></div>
+</body>
+
+	<script>
+		function change() {
+			let element = document.getElementById('name');
+			if (element.value == 'こんにちは') {
+				//alert('こんにちは！');
+				marker0.openPopup();
+			}
+			if (element.value == 'レッサーパンダ') {
+				marker.openPopup();
+			}
+			if (element.value == 'コンドル') {
+				marker2.openPopup();
+			}
+		}
+
+		mymap = L.map('mapid').setView(
+			[34.0140575231894, 134.52077013122792],
+			18);
+
+		L.tileLayer(
+			'https://cyberjapandata.gsi.go.jp/xyz/ort/{z}/{x}/{y}.jpg',
+		  {
+		    attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">地理院タイル</a>-電子国土基本図(オルソ画像)',
+		    maxZoom: 18,
+		   }
+		 ).addTo(mymap);
+
+		// Marker（ピン）を追加する
+		marker0 = L.marker([34.01402528555591, 134.5208103637434]).addTo(mymap);
+		marker0.bindPopup(
+			"<b>こんにちは！</b><br><b>とくしま動物園北島建設の森です。</b><br><img src='https://www.city.tokushima.tokushima.jp/zoo/gaiyo/index.images/zpic0201.jpg' width=150>"
+		).closePopup();
+
+		// Marker（ピン）を追加する
+		marker = L.marker([34.014383233656446, 134.521840331973]).addTo(mymap);
+		marker.bindPopup(
+			"<b>レッサーパンダ</b><br><img src='https://www.city.tokushima.tokushima.jp/zoo/gallery/ichiran.images/panda-s.jpg' width=150>"
+		).closePopup();
+
+		// Marker（ピン）を追加する
+		marker2 = L.marker([34.01438129253138, 134.51969085431656]).addTo(mymap);
+		marker2.bindPopup(
+			"<b>コンドル</b><br><img src='https://www.city.tokushima.tokushima.jp/zoo/gallery/kantai/andean_condor.images/kondoru2.jpg' width=150>"
+		).closePopup();
+
+	</script>
+
+	<p>
+	本ページで使用している画像は、とくしま動物園北島建設の森のHPの画像を使用させていただいています。<br>
+	<a href="https://www.city.tokushima.tokushima.jp/zoo/">とくしま動物園北島建設の森</a>
+	</p>
+
+</html>
